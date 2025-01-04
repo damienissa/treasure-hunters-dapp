@@ -71,7 +71,6 @@
   left: 50%;
   /* Center horizontally */
   transform: translateX(-50%);
-  /* Adjust for the button's width */
   width: calc(100% - 32px);
   /* Horizontal 16px margin on both sides */
   max-width: 358px;
@@ -85,13 +84,19 @@
   padding: 0;
   cursor: pointer;
   background-image: url('./assets/primary_button.svg');
-}
-
-.image-button img {
-  width: 100%;
-  /* Make the image fill the button */
-  height: 100%;
-  /* Maintain the button's height */
-  object-fit: contain;
-  /* Ensures proper scaling of the SVG */
+  display: flex;
+  /* Enable flexbox */
+  justify-content: center;
+  /* Center text horizontally */
+  align-items: center;
+  /* Center text vertically */
+  color: #FAFAFA;
+  /* White text color */
+  font-family: 'Press Start 2P', sans-serif;
+  /* Apply the font */
+  font-size: 16px;
+  /* Adjust font size */
+  text-transform: uppercase;
+  /* Make text uppercase */
+  text-align: center;
 }
