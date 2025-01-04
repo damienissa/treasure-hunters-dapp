@@ -125,7 +125,7 @@
   /* Adjust as needed for layout */
   height: auto;
   /* Dynamically adjusts to text content */
-  padding: 16px;
+  padding: 32px;
   /* Add padding around the text */
   font-family: 'Press Start 2P', sans-serif;
   /* Ensure the font is loaded */
