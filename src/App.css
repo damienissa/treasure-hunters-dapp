@@ -1,8 +1,20 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 500px;
+  width: 100vw;
+  /* Full width of the viewport */
+  height: 100vh;
+  /* Full height of the viewport */
+  margin: 0;
+  padding: 0;
   text-align: center;
+  background-image: url('./assets/background.png');
+  /* Replace with the actual path */
+  background-size: cover;
+  /* Ensures the image covers the entire area */
+  background-position: center;
+  /* Centers the image */
+  background-repeat: no-repeat;
+  /* Prevents the image from repeating */
 }
 
 .logo {
@@ -11,9 +23,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +36,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +54,44 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.button-image-container {
+  position: relative;
+  width: 100%;
+  /* Full width */
+  height: 100vh;
+  /* Full height */
+}
+
+.image-button {
+  position: absolute;
+  bottom: 100px;
+  /* 100px from the bottom */
+  left: 50%;
+  /* Center horizontally */
+  transform: translateX(-50%);
+  /* Adjust for the button's width */
+  width: calc(100% - 32px);
+  /* Horizontal 16px margin on both sides */
+  max-width: 358px;
+  /* Optional: limit max width for responsive design */
+  height: 56px;
+  /* Button height */
+  background: none;
+  /* Remove default button styles */
+  border: none;
+  /* Remove border */
+  padding: 0;
+  cursor: pointer;
+  background-image: url('./assets/primary_button.svg');
+}
+
+.image-button img {
+  width: 100%;
+  /* Make the image fill the button */
+  height: 100%;
+  /* Maintain the button's height */
+  object-fit: contain;
+  /* Ensures proper scaling of the SVG */
 }
