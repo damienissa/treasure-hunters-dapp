@@ -1,3 +1,14 @@
+body {
+  user-select: none;
+  /* Prevents text selection */
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For IE/Edge */
+}
+
 #root {
   max-width: 500px;
   width: 100vw;
@@ -17,54 +28,10 @@
   /* Prevents the image from repeating */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.button-image-container {
-  position: relative;
-  width: 100%;
-  /* Full width */
-  height: 100vh;
-  /* Full height */
-}
-
 .image-button {
+  pointer-events: auto;
+  /* Enable pointer events */
+
   position: absolute;
   bottom: 100px;
   /* 100px from the bottom */
@@ -99,6 +66,8 @@
   text-transform: uppercase;
   /* Make text uppercase */
   text-align: center;
+  z-index: 10;
+  /* Ensure the button is above other elements */
 }
 
 .text-container {
@@ -121,11 +90,11 @@
   /* Position 16px from the left */
   top: 65px;
   /* Position 65px from the top */
-  width: 70%;
+  width: 75%;
   /* Adjust as needed for layout */
   height: auto;
   /* Dynamically adjusts to text content */
-  padding: 32px;
+  padding: 16px;
   /* Add padding around the text */
   font-family: 'Press Start 2P', sans-serif;
   /* Ensure the font is loaded */
@@ -139,7 +108,7 @@
 
   /* Background Image */
   background: url('./assets/text_background.svg') no-repeat center center;
-  background-size: contain;
+  background-size: cover;
 }
 
 .character-image {

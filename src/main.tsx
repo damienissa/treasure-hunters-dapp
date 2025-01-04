@@ -1,12 +1,13 @@
-import WebApp from '@twa-dev/sdk'
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import WebApp from '@twa-dev/sdk';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
 import './i18n'; // Import the i18next setup
-import './index.css'
+import './index.css';
 
 
 WebApp.ready();
+WebApp.enableClosingConfirmation();
 
 // Test comment
 createRoot(document.getElementById('root')!).render(
