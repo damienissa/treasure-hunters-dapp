@@ -100,3 +100,54 @@
   /* Make text uppercase */
   text-align: center;
 }
+
+.text-container {
+  position: relative;
+  width: 100%;
+  /* Full width of the container */
+  height: 100vh;
+  /* Full height of the viewport */
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+}
+
+.description {
+  position: absolute;
+  /* Ensure positioning works with left and top */
+  left: 16px;
+  /* Position 16px from the left */
+  top: 65px;
+  /* Position 65px from the top */
+  width: 70%;
+  /* Adjust as needed for layout */
+  height: auto;
+  /* Dynamically adjusts to text content */
+  padding: 16px;
+  /* Add padding around the text */
+  font-family: 'Press Start 2P', sans-serif;
+  /* Ensure the font is loaded */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 132%;
+  /* Adjust for proper spacing */
+  color: #FAFAFA;
+  text-align: justify;
+
+  /* Background Image */
+  background: url('./assets/text_background.svg') no-repeat center center;
+  background-size: contain;
+}
+
+.character-image {
+  background: url('./assets/welcome_character.png') no-repeat center center;
+  background-size: contain;
+  position: absolute;
+  right: 16px;
+  bottom: 184px;
+  width: 89px;
+  height: 245px;
+}

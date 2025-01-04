@@ -11,11 +11,17 @@ const App: React.FC = () => {
       {/* Localized Button */}
       <button
         className="image-button"
-        onClick={() => alert(t('button_click'))}
       >
         {t('wallet')}
       </button>
+      <div className="text-container">
 
+        <p
+          className="description"
+          dangerouslySetInnerHTML={{ __html: t('welcome_message') }}
+        ></p>
+        <div className="character-image" />
+      </div>
     </div>
   );
 };
