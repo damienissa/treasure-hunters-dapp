@@ -33,7 +33,7 @@ body {
   /* Enable pointer events */
 
   position: absolute;
-  bottom: 100px;
+  bottom: 64px;
   /* 100px from the bottom */
   left: 50%;
   /* Center horizontally */
@@ -109,14 +109,4 @@ body {
   /* Background Image */
   background: url('./assets/text_background.svg') no-repeat center center;
   background-size: cover;
-}
-
-.character-image {
-  background: url('./assets/welcome_character.png') no-repeat center center;
-  background-size: contain;
-  position: absolute;
-  right: 16px;
-  bottom: 184px;
-  width: 89px;
-  height: 245px;
 }

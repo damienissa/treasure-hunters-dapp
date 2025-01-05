@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import '../css/shared.css';
 import CharacterComponent from "./Character";
 
 

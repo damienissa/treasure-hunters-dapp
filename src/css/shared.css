@@ -20,5 +20,22 @@
     position: absolute;
     left: 16px;
     right: 100px;
-    bottom: 400px;
+    bottom: 216px;
+}
+
+.character-image {
+    background: url('../assets/welcome_character.png') no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    right: 16px;
+    bottom: 0px;
+    width: 89px;
+    height: 245px;
+}
+
+.character-container {
+    position: absolute;
+    bottom: 140px;
+    width: 100%;
+    height: 100%;
 }

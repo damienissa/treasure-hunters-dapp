@@ -1,10 +1,12 @@
+import '../css/shared.css';
+
 interface CharacterComponentProps {
     title: string;
 }
 
 const CharacterComponent: React.FC<CharacterComponentProps> = ({ title }) => {
     return (
-        <div>
+        <div className='character-container'>
             <div
                 className="from-character-mouth game-text-container game-text-box"
                 dangerouslySetInnerHTML={{

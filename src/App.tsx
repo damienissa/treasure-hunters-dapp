@@ -7,6 +7,7 @@ import CharacterComponent from './components/Character';
 import NotTelegramComponent from './components/NotTelegramComponent';
 import { isTelegramMobileApp } from './utils';
 
+
 const MyApp: React.FC = () => {
   const { t } = useTranslation();
   const [userName, setUserName] = useState<string | null>(null);
@@ -41,6 +42,7 @@ const App: React.FC = () => {
   return (
     <TonConnectUIProvider manifestUrl="https://damienissa.github.io/treasure-hunters-dapp/tonconnect-manifest.json">
       {isTelegramMobileApp() ? <MyApp /> : <NotTelegramComponent />}
+      {/* <MyApp /> */}
     </TonConnectUIProvider>
   );
 };
