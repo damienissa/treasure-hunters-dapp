@@ -1,4 +1,5 @@
 {
     "wallet": "Let's go!",
-    "welcome_message": "Welcome, {{userName}}! Is this your first time here?<br><br>Oh, then let me explain what's happening.<br><br>I'm gathering 20 people to go on a treasure hunt expedition.<br><br>Yes, treasure hunting! But I have to warn you that it's a bit dangerous.<br><br>Still, I’m confident everything will be fine!<br><br>And one more thing, the expedition is virtual, and your hero will go for a year or two...<br><br>But for you, it’ll take just a few seconds.<br><br>So, if you're in, buy the ticket and let's go!"
+    "welcome_message": "Welcome, {{userName}}! Is this your first time here?<br><br>Oh, then let me explain what's happening.<br><br>I'm gathering 20 people to go on a treasure hunt expedition.<br><br>Yes, treasure hunting! But I have to warn you that it's a bit dangerous.<br><br>Still, I’m confident everything will be fine!<br><br>And one more thing, the expedition is virtual, and your hero will go for a year or two...<br><br>But for you, it’ll take just a few seconds.<br><br>So, if you're in, buy the ticket and let's go!",
+    "not_a_telegram_message": "This game is exclusively available on the Telegram Mobile App.<br><br>To ensure the best experience, please open this link using the Telegram app on your mobile device."
 }
