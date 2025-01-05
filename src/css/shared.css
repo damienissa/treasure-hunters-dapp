@@ -10,8 +10,8 @@
     font-family: 'Press Start 2P', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 150%;
+    font-size: 10px;
+    line-height: 130%;
     color: #FAFAFA;
     text-align: justify;
 }
@@ -19,15 +19,15 @@
 .from-character-mouth {
     position: absolute;
     left: 16px;
-    right: 100px;
-    bottom: 30px;
+    right: 75px;
+    bottom: 80px;
 }
 
 .character-image {
     background: url('../assets/welcome_character.png') no-repeat center center;
     background-size: contain;
     position: absolute;
-    right: 16px;
+    right: 0px;
     bottom: 0px;
     width: 89px;
     height: 245px;
@@ -35,7 +35,7 @@
 
 .character-container {
     position: absolute;
-    bottom: 100px;
+    bottom: 90px;
     width: 100%;
     height: 100%;
 }
