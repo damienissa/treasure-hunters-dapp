@@ -10,15 +10,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@orbs-network/ton-access": "^2.3.3",
+    "@ton/blueprint": "^0.27.0",
+    "@ton/core": "^0.59.1",
+    "@ton/crypto": "^3.3.0",
+    "@ton/ton": "^15.1.0",
     "@tonconnect/sdk": "^3.0.5",
     "@tonconnect/ui-react": "^2.0.9",
     "@twa-dev/sdk": "^8.0.1",
     "@vitejs/plugin-basic-ssl": "^1.2.0",
+    "buffer": "^6.0.3",
     "i18next": "^24.2.0",
     "i18next-browser-languagedetector": "^8.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-i18next": "^15.4.0"
+    "react-i18next": "^15.4.0",
+    "ton": "^13.9.0",
+    "ton-core": "^0.53.0",
+    "ton-crypto": "^3.2.0",
+    "vite-plugin-node-polyfills": "^0.22.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

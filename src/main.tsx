@@ -5,6 +5,9 @@ import App from './App.tsx';
 import './i18n'; // Import the i18next setup
 import './index.css';
 
+import { Buffer } from 'buffer';
+window.Buffer = Buffer; // Make Buffer globally available
+
 
 WebApp.ready();
 WebApp.enableClosingConfirmation();
