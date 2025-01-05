@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import CharacterComponent from "./Character";
+import CharacterComponent from "./CharacterComponent";
 
 
 

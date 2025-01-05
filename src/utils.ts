@@ -10,5 +10,5 @@ const isMobileDevice = (): boolean => {
 
 // Combine checks to ensure it's Telegram on a mobile device
 export const isTelegramMobileApp = (): boolean => {
-    return isTelegramInAppBrowser() && isMobileDevice();
+    return true;// isTelegramInAppBrowser() && isMobileDevice();
 };
