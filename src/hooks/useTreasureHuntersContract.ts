@@ -1,6 +1,5 @@
 import { Address, Contract, OpenedContract, toNano } from "@ton/core";
 import { TreasureHunters } from "../contract/wrappers/TreasureHunters";
-import { useAsyncInitialize } from "./useAsyncInitialize";
 import { useTonClient } from "./useTonClient";
 import { useTonConnect } from "./useTonConnect";
 
@@ -8,25 +7,33 @@ export function useTreasureHuntersContract() {
     const { client } = useTonClient();
     const { sender } = useTonConnect();
 
-    const treasureHuntersContract = useAsyncInitialize(async () => {
+    const treasureHuntersContract = async () => {
         if (!client) return;
 
         const contract: Contract = TreasureHunters.fromAddress(
-            Address.parse("EQC0hUHEAwfhLvloU1uivcXXabiE7f3XTkZ38g5w3hWBE3w2")
+            Address.parse("kQCIis2xLk4Sxt2FRcJtcC9-Znma0GlQMFSXix6Cayivnzun") // 0.1 per tiket
         );
 
         return client.open(contract) as OpenedContract<TreasureHunters>;
-    });
+    };
 
     return {
         treasureHuntersContract,
-        buyTicket: () => {
-            treasureHuntersContract?.send(sender, {
-                value: toNano("10"),
+        getNumberOfCurrentPlayers: async () => {
+            const client = await treasureHuntersContract();
+            const players = await client?.getNumberOfCurrentPlayers();
+            return players;
+        },
+        buyTicket: async () => {
+            const client = await treasureHuntersContract();
+            const result = await client?.send(sender, {
+                value: toNano("0.1"),
 
             }, {
                 $$type: 'BuyTicket',
             });
+
+            console.log('BuyTicket result:', result);
         }
     };
 }

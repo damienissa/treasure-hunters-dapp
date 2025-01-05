@@ -4,6 +4,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTonConnect } from '../hooks/useTonConnect';
 import { useTreasureHuntersContract } from '../hooks/useTreasureHuntersContract';
+import PlayerCounterComponent from "./PlayerCounter";
 import PrimaryButton from "./PrimaryButton";
 
 const ConnectedWalletComponent: React.FC = () => {
@@ -15,6 +16,7 @@ const ConnectedWalletComponent: React.FC = () => {
         buyTicket();
     };
 
+
     return (
         <div style={{ padding: '16px' }}>
             <div className="game-container" style={{ padding: '10px' }}>
@@ -25,7 +27,7 @@ const ConnectedWalletComponent: React.FC = () => {
                             <div className="game-text-box">{t('team_members')}</div>
                         </div>
                         <div className="child">
-                            <div className="game-text-box-bigger">13/20</div>
+                            <PlayerCounterComponent />
                         </div>
                     </div>
                 </div>
