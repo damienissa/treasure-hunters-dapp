@@ -10,7 +10,6 @@ window.Buffer = Buffer; // Make Buffer globally available
 
 
 WebApp.ready();
-WebApp.enableClosingConfirmation();
 
 // Test comment
 createRoot(document.getElementById('root')!).render(

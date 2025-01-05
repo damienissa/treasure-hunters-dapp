@@ -9,14 +9,17 @@ const AppContentComponent: React.FC = () => {
     const [wallet, setWallet] = useState<Wallet | null>(null);
     useEffect(() => {
         tonConnectUI.onStatusChange((wallet) => {
-            setWallet(wallet);
+            setWallet(wallet || null); // Explicitly set null if no wallet
         });
     }, [tonConnectUI]);
+
+
     return (
         <div>
-            {wallet != null ? <ConnectedWalletComponent /> : <WelcomeComponent />}
+            {wallet ? <ConnectedWalletComponent /> : <WelcomeComponent />}
         </div>
     );
+
 };
 
 export default AppContentComponent;
