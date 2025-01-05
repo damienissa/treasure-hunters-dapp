@@ -1,13 +1,20 @@
-import { useIsConnectionRestored } from '@tonconnect/ui-react';
+import { useTonConnectUI, Wallet } from '@tonconnect/ui-react';
+import { useEffect, useState } from 'react';
 import ConnectedWalletComponent from './ConnectedWalletComponent';
 import WelcomeComponent from "./WelcomeComponent";
 
 
 const AppContentComponent: React.FC = () => {
-    const connectionRestored = useIsConnectionRestored();
+    const [tonConnectUI] = useTonConnectUI();
+    const [wallet, setWallet] = useState<Wallet | null>(null);
+    useEffect(() => {
+        tonConnectUI.onStatusChange((wallet) => {
+            setWallet(wallet);
+        });
+    }, [tonConnectUI]);
     return (
         <div>
-            {connectionRestored ? <ConnectedWalletComponent /> : <WelcomeComponent />}
+            {wallet != null ? <ConnectedWalletComponent /> : <WelcomeComponent />}
         </div>
     );
 };

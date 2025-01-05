@@ -21,7 +21,7 @@ const WelcomeComponent: React.FC = () => {
     const connectWallet = async () => {
         try {
             console.log('Attempting to open TON Connect modal...');
-            await tonConnectUI.disconnect();
+
             await tonConnectUI.openModal();
             console.log('TON Connect modal opened successfully');
         } catch (error) {
