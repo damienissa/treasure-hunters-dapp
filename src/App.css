@@ -33,7 +33,7 @@ body {
   /* Enable pointer events */
 
   position: absolute;
-  bottom: 64px;
+  bottom: 32px;
   /* 100px from the bottom */
   left: 50%;
   /* Center horizontally */
