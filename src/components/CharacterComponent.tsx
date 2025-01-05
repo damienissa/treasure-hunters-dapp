@@ -8,7 +8,7 @@ const CharacterComponent: React.FC<CharacterComponentProps> = ({ title }) => {
     return (
         <div className='character-container'>
             <div
-                className="from-character-mouth game-text-container game-text-box"
+                className="from-character-mouth game-container game-text-box"
                 dangerouslySetInnerHTML={{
                     __html: title,
                 }}

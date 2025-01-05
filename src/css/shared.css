@@ -1,4 +1,4 @@
-.game-text-container {
+.game-container {
     background: rgba(1, 1, 1, 0.68);
     border: 2px solid #FAFAFA;
     box-sizing: border-box;
@@ -11,6 +11,16 @@
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
+    line-height: 130%;
+    color: #FAFAFA;
+    text-align: justify;
+}
+
+.game-text-box-bigger {
+    font-family: 'Press Start 2P', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
     line-height: 130%;
     color: #FAFAFA;
     text-align: justify;
@@ -38,4 +48,64 @@
     bottom: 90px;
     width: 100%;
     height: 100%;
+}
+
+.expedition-character-image {
+    background: url('../assets/expedition_character.png') no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    right: 0px;
+    bottom: 32px;
+    width: 215px;
+    height: 233px;
+}
+
+.base-box-container {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 334px;
+    height: 56px;
+
+    background: #4BA249;
+    border: 2px solid #FAFAFA;
+    box-shadow: 2px 2px 0px #FAFAFA;
+}
+
+.primary-button {
+
+    left: 16px;
+    right: 16px;
+    height: 56px;
+    background: url('../assets/primary_button.svg') no-repeat center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FAFAFA;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.mom {
+    width: 100%;
+    /* Try setting this to 400px or something */
+    display: table;
+
+}
+
+.child {
+    display: table-cell;
+}
+
+.childinner {
+    margin-left: 25px;
+    /* Decorative .. */
+    background-color: #cccccc;
+    min-height: 40px;
+}
+
+.child:first-child .childinner {
+    margin-left: 0;
 }

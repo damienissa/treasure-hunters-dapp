@@ -1,42 +1,40 @@
-import { useTonConnectUI } from '@tonconnect/ui-react';
-import WebApp from '@twa-dev/sdk';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import '../App.css';
-import CharacterComponent from './CharacterComponent';
+import PrimaryButton from "./PrimaryButton";
 
-
-const WelcomeComponent: React.FC = () => {
+const ConnectedWalletComponent: React.FC = () => {
     const { t } = useTranslation();
-    const [userName, setUserName] = useState<string | null>(null);
-    const [tonConnectUI] = useTonConnectUI();
-
-    useEffect(() => {
-        const user = WebApp.initDataUnsafe?.user;
-        setUserName(user?.first_name || 'Guest');
-    }, []);
-
-
-
-    const connectWallet = async () => {
-        try {
-            console.log('Attempting to open TON Connect modal...');
-
-            await tonConnectUI.openModal();
-            console.log('TON Connect modal opened successfully');
-        } catch (error) {
-            console.error('Failed to open wallet connection modal:', error);
-        }
-    };
 
     return (
-        <div>
-            <button className="image-button" onClick={connectWallet}>
-                {t('wallet')}
-            </button>
-            <CharacterComponent title={t('welcome_message', { userName })} />
+        <div style={{ padding: '16px' }}>
+            <div className="game-container" style={{ padding: '10px' }}>
+                <div className="game-container">
+                    <div className="mom">
+                        <div className="child">
+                            <div className="game-text-box">{t('team_members')}</div>
+                        </div>
+                        <div className="child">
+                            <div className="game-text-box-bigger">13/20</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{ paddingLeft: '88px', paddingRight: '88px', paddingTop: "48px", paddingBottom: "48px" }}>
+                    <div className="game-text-box-bigger" style={{ paddingBottom: "12px" }}>{t('prize_places')}</div>
+                    <div className="game-text-box-bigger" style={{ padding: "6px" }}>{t('prizes.top1')}</div>
+                    <div className="game-text-box-bigger" style={{ padding: "6px" }}>{t('prizes.top2')}</div>
+                    <div className="game-text-box-bigger" style={{ padding: "6px" }}>{t('prizes.top3')}</div>
+                    <div className="game-text-box-bigger" style={{ padding: "6px" }}>{t('prizes.top4')}</div>
+                    <div className="game-text-box-bigger" style={{ padding: "6px" }}>{t('prizes.top5')}</div>
+                </div>
+                <div className="game-text-box-bigger" style={{ paddingBottom: "0px" }}>{t('ticket_price')}</div>
+                <div style={{ padding: '20px 12px 14px 12px' }}>
+                    <PrimaryButton title={t('buy_ticket')} onClick={() => { }} />
+                </div>
+            </div>
+            <div className="expedition-character-image" />
         </div>
     );
 };
 
-export default WelcomeComponent;
+export default ConnectedWalletComponent;
