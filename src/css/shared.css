@@ -1,0 +1,24 @@
+.game-text-container {
+    background: rgba(1, 1, 1, 0.68);
+    border: 2px solid #FAFAFA;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 0px #FAFAFA;
+    padding: 10px;
+}
+
+.game-text-box {
+    font-family: 'Press Start 2P', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #FAFAFA;
+    text-align: justify;
+}
+
+.from-character-mouth {
+    position: absolute;
+    left: 16px;
+    right: 100px;
+    bottom: 400px;
+}
