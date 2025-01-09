@@ -38,8 +38,6 @@ jobs:
           cache-dependency-path: './'
       - name: Install dependencies
         run: npm install --legacy-peer-deps
-      - name: Lint
-        run: npx eslint . --fix || echo "Lint completed with warnings"
       - name: Build
         run: npm run build
       - name: Setup Pages
