@@ -50,8 +50,6 @@ export default ExpeditionHistoryComponent;
 
 const ScrollableList = ({ expeditions }: { expeditions: ExpeditionResult[] }) => {
     return (
-
-        <div className="scrollable-box">
             {expeditions.map((expedition, index) => (
                 <div key={index} className="game-text-box">
                     <p>
@@ -73,7 +71,6 @@ const ScrollableList = ({ expeditions }: { expeditions: ExpeditionResult[] }) =>
                     </ul>
                 </div>
             ))}
-        </div>
 
     );
 };
