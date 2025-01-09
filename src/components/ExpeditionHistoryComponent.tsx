@@ -1,3 +1,4 @@
+import { fromNano } from '@ton/core';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ExpeditionResult } from '../../build/tact_TreasureHunters';
@@ -29,20 +30,13 @@ const ExpeditionHistoryComponent: React.FC = () => {
     return (
         <div style={{ padding: '16px' }}>
             <div className="expedition-character-image" />
-            <div className="game-container" style={{ padding: '10px' }}>
+            <div style={{ padding: '10px' }}>
                 {loading ? (
                     <p>{'Loading...'}</p>
                 ) : error ? (
                     <p style={{ color: 'red' }}>{error}</p>
-                ) : history?.length ? (
-                    <ul>
-                        {history.map((expedition, index) => (
-                            <li key={index}>
-                                <p>{'Expedition Name'}: {expedition.address.toString()}</p>
-                                <p>{'Result'}: {expedition.winners.values().map((e) => e.player.toString())}</p>
-                            </li>
-                        ))}
-                    </ul>
+                ) : history?.length ? (<ScrollableList expeditions={history} />
+
                 ) : (
                     <p>{'No expeditions found'}</p>
                 )}
@@ -52,3 +46,42 @@ const ExpeditionHistoryComponent: React.FC = () => {
 };
 
 export default ExpeditionHistoryComponent;
+
+
+const ScrollableList = ({ expeditions }: { expeditions: ExpeditionResult[] }) => {
+    return (
+
+        <div className="scrollable-box">
+            {expeditions.map((expedition, index) => (
+                <div key={index} className="game-text-box">
+                    <p>
+                        <strong>Expedition Address:</strong>{" "}
+                        {shortenAddress(expedition.address.toString())}
+                    </p>
+                    <p>
+                        <strong>Winners:</strong>
+                    </p>
+                    <ul>
+                        {Array.from(expedition.winners.values()).map(
+                            (winner) => (
+                                <div>
+                                    Player: {shortenAddress(winner.player.toString())} <br />
+                                    Treasure: {fromNano(winner.treasure)} TON
+                                </div>
+                            )
+                        )}
+                    </ul>
+                </div>
+            ))}
+        </div>
+
+    );
+};
+
+
+export const shortenAddress = (address: string, start = 4, end = 4): string => {
+    if (address.length <= start + end) {
+        return address; // If the address is short, no need to truncate
+    }
+    return `${address.slice(0, start)}...${address.slice(-end)}`;
+};
