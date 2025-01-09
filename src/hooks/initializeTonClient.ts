@@ -1,17 +1,21 @@
 import { getHttpEndpoint, Network } from "@orbs-network/ton-access";
 import { TonClient } from "@ton/ton";
 
-let cachedEndpoint: string | null = null;
+let tonClient: TonClient | null = null;
 
-export async function initializeTonClient(network: Network): Promise<TonClient | null> {
+export async function getTonClient(network: Network): Promise<TonClient> {
+    if (tonClient) {
+        // Return the cached instance
+        return tonClient;
+    }
+
     try {
-        const endpoint = cachedEndpoint || (await getHttpEndpoint({ network }));
-        cachedEndpoint = endpoint; // Cache the endpoint
-        console.log("Using TON endpoint:", endpoint);
-
-        return new TonClient({ endpoint });
+        const endpoint = await getHttpEndpoint({ network });
+        tonClient = new TonClient({ endpoint });
+        console.log("TonClient initialized with endpoint:", endpoint);
+        return tonClient;
     } catch (error) {
         console.error("Failed to initialize TonClient:", error);
-        return null;
+        throw error;
     }
 }

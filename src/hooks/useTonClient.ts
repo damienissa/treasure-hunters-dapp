@@ -1,7 +1,7 @@
 import { TonClient } from "@ton/ton";
 import { CHAIN } from "@tonconnect/ui-react";
 import { useEffect, useState } from "react";
-import { initializeTonClient } from "./initializeTonClient";
+import { getTonClient } from "./initializeTonClient";
 import { useTonConnect } from "./useTonConnect";
 
 export function useTonClient() {
@@ -11,7 +11,7 @@ export function useTonClient() {
     useEffect(() => {
         const initClient = async () => {
             if (client || !network) return;
-            const tonClient = await initializeTonClient(
+            const tonClient = await getTonClient(
                 network === CHAIN.MAINNET ? "mainnet" : "testnet"
             );
             setClient(tonClient);

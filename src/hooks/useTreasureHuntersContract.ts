@@ -1,11 +1,12 @@
-import { Address, Contract, OpenedContract, toNano } from "@ton/core";
-import { useMemo } from "react";
-import { Expedition } from "../contract/wrappers/Expedition";
-import { BuyTicket, TreasureHunters } from "../contract/wrappers/TreasureHunters";
-import { useTonClient } from "./useTonClient";
+import { Address, OpenedContract, toNano } from "@ton/core";
+import { TonClient } from "@ton/ton";
+import { CHAIN } from "@tonconnect/ui-react";
+import { useEffect, useState } from "react";
+import { BuyTicket, TreasureHunters } from "../../build/tact_TreasureHunters.ts";
+import { getExpeditionContract, getTonClient, getTreasureHuntersContract } from "./contracts.ts";
 import { useTonConnect } from "./useTonConnect";
 
-const DEFAULT_TREASURE_HUNTERS_ADDRESS = Address.parse("EQBmLju15bO6UW-9jBHQrSiYcFTtD6GActOZNGc1f_aZFgdm");
+const TREASURE_HUNTERS_ADDRESS = Address.parse("EQBmLju15bO6UW-9jBHQrSiYcFTtD6GActOZNGc1f_aZFgdm");
 const DEFAULT_TICKET_PRICE = toNano("0.6");
 
 function buyTicketMessage(referrer: Address | null): BuyTicket {
@@ -15,34 +16,40 @@ function buyTicketMessage(referrer: Address | null): BuyTicket {
     };
 }
 
-export function useTreasureHuntersContract(
-    treasureHuntersAddress = DEFAULT_TREASURE_HUNTERS_ADDRESS,
-    ticketPrice = DEFAULT_TICKET_PRICE
-) {
-    const { client } = useTonClient();
-    const { sender } = useTonConnect();
 
-    // Memoize the TreasureHunters contract to initialize it only once
-    const treasureHuntersContract = useMemo(() => {
+export function useTreasureHuntersContract() {
+    const { network, sender } = useTonConnect();
+    const [client, setClient] = useState<TonClient | null>(null);
+    const [treasureHuntersContract, setTreasureHuntersContract] = useState<OpenedContract<TreasureHunters> | null>(null);
+
+    useEffect(() => {
+        const initialize = async () => {
+            try {
+                if (!network) return;
+
+                const tonClient = await getTonClient(network === CHAIN.MAINNET ? "mainnet" : "testnet");
+                setClient(tonClient);
+
+                const contract = await getTreasureHuntersContract(tonClient, TREASURE_HUNTERS_ADDRESS);
+                setTreasureHuntersContract(contract);
+            } catch (error) {
+                console.error("Failed to initialize contracts:", error);
+            }
+        };
+
+        initialize();
+    }, [network]);
+
+    const getExpedition = async (address: Address) => {
         if (!client) {
-            console.error("Ton client is not initialized");
+            console.error("TonClient is not initialized");
             return null;
         }
-        const contract: Contract = TreasureHunters.fromAddress(treasureHuntersAddress);
-        return client.open(contract) as OpenedContract<TreasureHunters>;
-    }, [client, treasureHuntersAddress]);
-
-    // Function to get an Expedition contract (memoized not needed as it changes per address)
-    const getExpeditionContract = async (address: Address): Promise<OpenedContract<Expedition> | null> => {
-        if (!client) {
-            console.error("Ton client is not initialized");
-            return null;
-        }
-        const contract: Contract = Expedition.fromAddress(address);
-        return client.open(contract) as OpenedContract<Expedition>;
+        return getExpeditionContract(client, address);
     };
 
     return {
+        treasureHuntersContract,
         getExpeditionHistory: async () => {
             if (!treasureHuntersContract) {
                 console.error("Treasure Hunters contract is not initialized");
@@ -67,7 +74,7 @@ export function useTreasureHuntersContract(
                 const currentExpeditionAddress = await treasureHuntersContract.getCurrentExpedition();
                 if (!currentExpeditionAddress) return 0;
 
-                const expedition = await getExpeditionContract(currentExpeditionAddress);
+                const expedition = await getExpedition(currentExpeditionAddress);
                 return (await expedition?.getNumberOfMembers()) || 0;
             } catch (error) {
                 console.error("Failed to fetch current players:", error);
@@ -84,7 +91,7 @@ export function useTreasureHuntersContract(
                 const currentExpeditionAddress = await treasureHuntersContract.getCurrentExpedition();
                 if (!currentExpeditionAddress) return false;
 
-                const expedition = await getExpeditionContract(currentExpeditionAddress);
+                const expedition = await getExpedition(currentExpeditionAddress);
                 const members = (await expedition?.getMembers())?.values();
                 return members?.some((member) => member === sender.address) || false;
             } catch (error) {
@@ -101,7 +108,7 @@ export function useTreasureHuntersContract(
             try {
                 const result = await treasureHuntersContract.send(
                     sender,
-                    { value: ticketPrice },
+                    { value: DEFAULT_TICKET_PRICE },
                     buyTicketMessage(referrer)
                 );
                 console.log("BuyTicket result:", result);
@@ -110,5 +117,6 @@ export function useTreasureHuntersContract(
                 console.error("Failed to buy ticket:", error);
             }
         },
+
     };
 }
