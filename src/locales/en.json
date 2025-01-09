@@ -5,12 +5,13 @@
     "team_members": "Team members",
     "prize_places": "Prize places",
     "prizes": {
-        "top1": "TOP1 - 70TON",
-        "top2": "TOP2 - 42TON",
-        "top3": "TOP3 - 14TON",
-        "top4": "TOP4 - 9.8TON",
-        "top5": "TOP5 - 4.5TON"
+        "top1": "TOP1 - 15 TON",
+        "top2": "TOP2 - 9 TON",
+        "top3": "TOP3 - 6 TON"
     },
     "ticket_price": "Ticket price: 10 TON!",
-    "buy_ticket": "Buy ticket"
+    "buy_ticket": "Buy ticket",
+    "expedition": "Expedition",
+    "rewards": "Rewards",
+    "referrals": "Referrals"
 }

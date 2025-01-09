@@ -29,7 +29,7 @@ const PlayerCounterComponent = () => {
 
     return (
         <div>
-            <div className="game-text-box-bigger">{currentPlayers}/20</div>
+            <div className="game-text-box-bigger">{currentPlayers}/10</div>
         </div>
     );
 };

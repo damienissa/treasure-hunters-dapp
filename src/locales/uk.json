@@ -5,12 +5,13 @@
     "team_members": "Людей в команді",
     "prize_places": "Призові місця",
     "prizes": {
-        "top1": "TOP1 - 70TON",
-        "top2": "TOP2 - 42TON",
-        "top3": "TOP3 - 14TON",
-        "top4": "TOP4 - 9.8TON",
-        "top5": "TOP5 - 4.5TON"
+        "top1": "TOP1 - 15 TON",
+        "top2": "TOP2 - 9 TON",
+        "top3": "TOP3 - 6 TON"
     },
-    "ticket_price": "Ціна квитка: 10 TON!",
-    "buy_ticket": "Купити квиток"
+    "ticket_price": "Ціна квитка: 5 TON!",
+    "buy_ticket": "Купити квиток",
+    "expedition": "Експедиція",
+    "rewards": "Нагороди",
+    "referrals": "Реферали"
 }

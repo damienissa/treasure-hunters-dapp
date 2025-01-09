@@ -1,0 +1,64 @@
+.bottom-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+}
+
+.bottom-bar-item {
+    background-color: #010101;
+    height: 76px;
+    width: 100%;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #FAFAFA;
+    /* Default text color */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bottom-bar-item.active {
+    background: #FAFAFA;
+    box-shadow: 2px 2px 0px #555555;
+    border-radius: 0px;
+    color: #010101;
+    /* Active text color */
+}
+
+/* Hover effect for better feedback */
+.bottom-bar-item:hover {
+    transform: scale(1.05);
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.expedition-icon {
+    background-image: url('data:image/svg+xml;charset=UTF-8, <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M17 1H7V2H5V3.5H3V5.5H2V7.5H1V16.5H2V18.5H3V20.5H5V22H7V23H17V22H19V20.5H21V18.5H22V16.5H23V7.5H22V5.5H21V3.5H19V2H17V1Z" stroke="#010101" stroke-width="2"/></svg>');
+}
+
+.rewards-icon {
+    background-image: url('data:image/svg+xml;charset=UTF-8, <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 5H11V6H9V7.5H7V9.5H6V11.5H5V20.5H6V22.5H7V24.5H9V26H11V27H21V26H23V24.5H25V22.5H26V20.5H27V11.5H26V9.5H25V7.5H23V6H21V5Z" stroke="#FAFAFA" stroke-width="2"/><path d="M15.1429 22V20.2857H10V18.5714H15.1429V16.8571H11.7143V15.1429H10V13.4286H11.7143V11.7143H15.1429V10H16.8571V11.7143H20.2857V13.4286H16.8571V15.1429H20.2857V16.8571H22V18.5714H20.2857V20.2857H16.8571V22H15.1429ZM13.4286 15.1429H15.1429V13.4286H13.4286V15.1429ZM16.8571 18.5714H18.5714V16.8571H16.8571V18.5714Z" fill="#FAFAFA"/></svg>');
+}
+
+.referrals-icon {
+    background-image: url('data:image/svg+xml;charset=UTF-8, <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 16H19M21 16H19M19 16V14M19 16V18M18 13V16V19M11 5H21V6H23V7.5H25V9.5H26V11.5H27V20.5H26V22.5H25V24.5H23V26H21V27H11V26H9V24.5H7V22.5H6V20.5H5V11.5H6V9.5H7V7.5H9V6H11V5Z" stroke="#FAFAFA" stroke-width="2"/></svg>');
+}

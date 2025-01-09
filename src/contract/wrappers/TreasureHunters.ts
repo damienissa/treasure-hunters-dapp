@@ -1,1 +1,1 @@
-export * from '../../../build/tact_TreasureHunters'; // Import from contract folder
+export * from '../../../build/tact_TreasureHunters.ts'; // Import from contract folder

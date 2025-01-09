@@ -1174,30 +1174,32 @@ function dictValueParserTreasureHunters$Data(): DictionaryValue<TreasureHunters$
     }
 }
 
-type TreasureHunters_init_args = {
-    $$type: 'TreasureHunters_init_args';
+type Expedition_init_args = {
+    $$type: 'Expedition_init_args';
+    id: bigint;
     config: Config;
 }
 
-function initTreasureHunters_init_args(src: TreasureHunters_init_args) {
+function initExpedition_init_args(src: Expedition_init_args) {
     return (builder: Builder) => {
         const b_0 = builder;
+        b_0.storeInt(src.id, 257);
         b_0.store(storeConfig(src.config));
     };
 }
 
-async function TreasureHunters_init(config: Config) {
-    const __code = Cell.fromBase64('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');
-    const __system = Cell.fromBase64('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');
+async function Expedition_init(id: bigint, config: Config) {
+    const __code = Cell.fromBase64('te6ccgECHQEABScAART/APSkE/S88sgLAQIBYgIDA3rQAdDTAwFxsKMB+kABINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiFRQUwNvBPhhAvhi2zxVF9s88uCCGQQFAgEgERICngGSMH/gcCHXScIflTAg1wsf3iCCEDwW7ra64wKCEJRqmLa6jqfTHwGCEJRqmLa68uCB0z8BMcgBghCv+Q9XWMsfyz/J+EIBcG3bPH/gMHAGBwCuyPhDAcx/AcoAVXBQeIEBAc8AUAUg10mBAQu68uCIINcLCiCBBP+68tCJgwm68uCIzxbIVTAFUDSBAQHPAAH6AgH6AoEBAc8AEvQAEoEBAc8AyQHMye1UAugw0x8BghA8Fu62uvLggfpAASDXSYEBC7ry4Igg1wsKIIEE/7ry0ImDCbry4IgxVXDbPIIA1dNTFrny9IEBAVQgCiBulTBZ9FowlEEz9BTiB6RTBLqOkhBnEFYQRRA0QTDbPBcWFRRDMN4QZxBWEEUQNEEwfwgJATxtbSJus5lbIG7y0IBvIgGRMuIQJHADBIBCUCPbPDAPABL4QlJwxwXy4IQCsFR1Q1R1NNs8+CdvEIIImJaAoYIImJaAoYMGcPgoFAHIWYIQ2jhOQlADyx8BINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiM8W9ADJKlBEFEMwbW3bPDAKDwPcEI0QfBBrEFoQSRA9TLBtc1DS2zwabVCucA7bPIEBAVPBpzKAZKkEIgQREAQhbpVbWfRaMJjIAc8AQTP0QuKBAQFxLqcegGSpBCIhbpVbWfRaMJjIAc8AQTP0QuKBAQFyDqcUgGSpBCEQNBAjEC8LDA0AyG1wk1MEuY5YcCT4RG6X+CX4FX/4ZN4hofgRoCOBAQEiWfQMb6ExjjUjgQEBIln0DG+hkjBt3yBu8tCAE4EBAVIyIG6VMFn0WjCUQTP0FOIBpFAjgQEB9FowA6VDE5Ew4ugUXwQAEjBZqAGogGSpBAFmIW6VW1n0WjCYyAHPAEEz9ELiJ4EBAfSEb6UgkRKVMW0ybQHikIroXwM2OBA4R2UQJEMADgDqgQEBVFMAUvBBM/QMb6GUAdcAMJJbbeIgbvLQgAEBgQEBAshZAoEBAc8AASDXSYEBC7ry4Igg1wsKIIEE/7ry0ImDCbry4IjPFsktED0BIG6VMFn0WjCUQTP0FeILpIEBAVRJHFn0eG+lIJESlTFtMm0B4hDNAcrIcQHKAVAHAcoAcAHKAlAFINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiM8WUAP6AnABymgjbrORf5MkbrPilzMzAXABygDjDSFus5x/AcoAASBu8tCAAcyVMXABygDiyQH7CBAAmH8BygDIcAHKAHABygAkbrOdfwHKAAQgbvLQgFAEzJY0A3ABygDiJG6znX8BygAEIG7y0IBQBMyWNANwAcoA4nABygACfwHKAALJWMwCAVgTFAIBIBcYAhG0o7tnm2eNkDAZFQIRtFa7Z5tnjZAwGRYAAiYAAiACEbmUHbPNs8bIGBkaABG4K+7UTQ0gABgByu1E0NQB+GPSAAGOTYEBAdcA+kABINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiAHUAdCBAQHXAPoA+gCBAQHXAFUwBPQEgQEB1wAwEGgQZxBFEDQQI2wY4Pgo1wsKgwm68uCJGwACIQE6gQEB1wCBAQHXAPoA+gCBAQHXAFUwEEUF0VUD2zwcABj4QW8kECNfA1UwbXA=');
+    const __system = Cell.fromBase64('te6cckECHwEABTEAAQHAAQEFoXfJAgEU/wD0pBP0vPLICwMCAWIEEgN60AHQ0wMBcbCjAfpAASDXSYEBC7ry4Igg1wsKIIEE/7ry0ImDCbry4IhUUFMDbwT4YQL4Yts8VRfbPPLgghoFEQKeAZIwf+BwIddJwh+VMCDXCx/eIIIQPBbutrrjAoIQlGqYtrqOp9MfAYIQlGqYtrry4IHTPwExyAGCEK/5D1dYyx/LP8n4QgFwbds8f+AwcAYOAugw0x8BghA8Fu62uvLggfpAASDXSYEBC7ry4Igg1wsKIIEE/7ry0ImDCbry4IgxVXDbPIIA1dNTFrny9IEBAVQgCiBulTBZ9FowlEEz9BTiB6RTBLqOkhBnEFYQRRA0QTDbPBcWFRRDMN4QZxBWEEUQNEEwfwcIABL4QlJwxwXy4IQCsFR1Q1R1NNs8+CdvEIIImJaAoYIImJaAoYMGcPgoFAHIWYIQ2jhOQlADyx8BINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiM8W9ADJKlBEFEMwbW3bPDAJDwPcEI0QfBBrEFoQSRA9TLBtc1DS2zwabVCucA7bPIEBAVPBpzKAZKkEIgQREAQhbpVbWfRaMJjIAc8AQTP0QuKBAQFxLqcegGSpBCIhbpVbWfRaMJjIAc8AQTP0QuKBAQFyDqcUgGSpBCEQNBAjEC8KCwwAyG1wk1MEuY5YcCT4RG6X+CX4FX/4ZN4hofgRoCOBAQEiWfQMb6ExjjUjgQEBIln0DG+hkjBt3yBu8tCAE4EBAVIyIG6VMFn0WjCUQTP0FOIBpFAjgQEB9FowA6VDE5Ew4ugUXwQAEjBZqAGogGSpBAFmIW6VW1n0WjCYyAHPAEEz9ELiJ4EBAfSEb6UgkRKVMW0ybQHikIroXwM2OBA4R2UQJEMADQDqgQEBVFMAUvBBM/QMb6GUAdcAMJJbbeIgbvLQgAEBgQEBAshZAoEBAc8AASDXSYEBC7ry4Igg1wsKIIEE/7ry0ImDCbry4IjPFsktED0BIG6VMFn0WjCUQTP0FeILpIEBAVRJHFn0eG+lIJESlTFtMm0B4hDNATxtbSJus5lbIG7y0IBvIgGRMuIQJHADBIBCUCPbPDAPAcrIcQHKAVAHAcoAcAHKAlAFINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiM8WUAP6AnABymgjbrORf5MkbrPilzMzAXABygDjDSFus5x/AcoAASBu8tCAAcyVMXABygDiyQH7CBAAmH8BygDIcAHKAHABygAkbrOdfwHKAAQgbvLQgFAEzJY0A3ABygDiJG6znX8BygAEIG7y0IBQBMyWNANwAcoA4nABygACfwHKAALJWMwArsj4QwHMfwHKAFVwUHiBAQHPAFAFINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiM8WyFUwBVA0gQEBzwAB+gIB+gKBAQHPABL0ABKBAQHPAMkBzMntVAIBIBMYAgFYFBYCEbSju2ebZ42QMBoVAAImAhG0Vrtnm2eNkDAaFwACIAIBIBkeAhG5lB2zzbPGyBgaHQHK7UTQ1AH4Y9IAAY5NgQEB1wD6QAEg10mBAQu68uCIINcLCiCBBP+68tCJgwm68uCIAdQB0IEBAdcA+gD6AIEBAdcAVTAE9ASBAQHXADAQaBBnEEUQNBAjbBjg+CjXCwqDCbry4IkbATqBAQHXAIEBAdcA+gD6AIEBAdcAVTAQRQXRVQPbPBwAGPhBbyQQI18DVTBtcAACIQARuCvu1E0NIAAYk2SzqQ==');
     const builder = beginCell();
     builder.storeRef(__system);
     builder.storeUint(0, 1);
-    initTreasureHunters_init_args({ $$type: 'TreasureHunters_init_args', config })(builder);
+    initExpedition_init_args({ $$type: 'Expedition_init_args', id, config })(builder);
     const __data = builder.endCell();
     return { code: __code, data: __data };
 }
 
-const TreasureHunters_errors: { [key: number]: { message: string } } = {
+const Expedition_errors: { [key: number]: { message: string } } = {
     2: { message: `Stack underflow` },
     3: { message: `Stack overflow` },
     4: { message: `Integer overflow` },
@@ -1243,7 +1245,7 @@ const TreasureHunters_errors: { [key: number]: { message: string } } = {
     54739: { message: `Expedition is already started` },
 }
 
-const TreasureHunters_types: ABIType[] = [
+const Expedition_types: ABIType[] = [
     { "name": "StateInit", "header": null, "fields": [{ "name": "code", "type": { "kind": "simple", "type": "cell", "optional": false } }, { "name": "data", "type": { "kind": "simple", "type": "cell", "optional": false } }] },
     { "name": "StdAddress", "header": null, "fields": [{ "name": "workchain", "type": { "kind": "simple", "type": "int", "optional": false, "format": 8 } }, { "name": "address", "type": { "kind": "simple", "type": "uint", "optional": false, "format": 256 } }] },
     { "name": "VarAddress", "header": null, "fields": [{ "name": "workchain", "type": { "kind": "simple", "type": "int", "optional": false, "format": 32 } }, { "name": "address", "type": { "kind": "simple", "type": "slice", "optional": false } }] },
@@ -1267,59 +1269,46 @@ const TreasureHunters_types: ABIType[] = [
     { "name": "TreasureHunters$Data", "header": null, "fields": [{ "name": "owner", "type": { "kind": "simple", "type": "address", "optional": false } }, { "name": "config", "type": { "kind": "simple", "type": "Config", "optional": false } }, { "name": "currentExpedition", "type": { "kind": "simple", "type": "address", "optional": true } }, { "name": "currentExpeditionLength", "type": { "kind": "simple", "type": "int", "optional": false, "format": 257 } }, { "name": "expeditionResultsLength", "type": { "kind": "simple", "type": "int", "optional": false, "format": 257 } }, { "name": "expeditionResults", "type": { "kind": "dict", "key": "int", "value": "ExpeditionResult", "valueFormat": "ref" } }, { "name": "toBeClaimed", "type": { "kind": "dict", "key": "address", "value": "int" } }, { "name": "referralBonus", "type": { "kind": "dict", "key": "address", "value": "int" } }, { "name": "oncePlayed", "type": { "kind": "dict", "key": "address", "value": "bool" } }] },
 ]
 
-const TreasureHunters_getters: ABIGetter[] = [
-    { "name": "expeditionHistory", "arguments": [], "returnType": { "kind": "dict", "key": "int", "value": "ExpeditionResult", "valueFormat": "ref" } },
-    { "name": "contractBalance", "arguments": [{ "name": "address", "type": { "kind": "simple", "type": "address", "optional": false } }], "returnType": { "kind": "simple", "type": "int", "optional": false, "format": 257 } },
-    { "name": "availableForWithdraw", "arguments": [{ "name": "address", "type": { "kind": "simple", "type": "address", "optional": false } }], "returnType": { "kind": "simple", "type": "int", "optional": false, "format": 257 } },
-    { "name": "canBeClaimed", "arguments": [{ "name": "address", "type": { "kind": "simple", "type": "address", "optional": false } }], "returnType": { "kind": "simple", "type": "int", "optional": true, "format": 257 } },
-    { "name": "referralBonusBalance", "arguments": [{ "name": "address", "type": { "kind": "simple", "type": "address", "optional": false } }], "returnType": { "kind": "simple", "type": "int", "optional": true, "format": 257 } },
-    { "name": "currentExpedition", "arguments": [], "returnType": { "kind": "simple", "type": "address", "optional": true } },
+const Expedition_getters: ABIGetter[] = [
+    { "name": "numberOfMembers", "arguments": [], "returnType": { "kind": "simple", "type": "int", "optional": false, "format": 257 } },
+    { "name": "members", "arguments": [], "returnType": { "kind": "dict", "key": "int", "value": "address" } },
     { "name": "owner", "arguments": [], "returnType": { "kind": "simple", "type": "address", "optional": false } },
 ]
 
-export const TreasureHunters_getterMapping: { [key: string]: string } = {
-    'expeditionHistory': 'getExpeditionHistory',
-    'contractBalance': 'getContractBalance',
-    'availableForWithdraw': 'getAvailableForWithdraw',
-    'canBeClaimed': 'getCanBeClaimed',
-    'referralBonusBalance': 'getReferralBonusBalance',
-    'currentExpedition': 'getCurrentExpedition',
+export const Expedition_getterMapping: { [key: string]: string } = {
+    'numberOfMembers': 'getNumberOfMembers',
+    'members': 'getMembers',
     'owner': 'getOwner',
 }
 
-const TreasureHunters_receivers: ABIReceiver[] = [
-    { "receiver": "internal", "message": { "kind": "empty" } },
-    { "receiver": "internal", "message": { "kind": "typed", "type": "Withdraw" } },
-    { "receiver": "internal", "message": { "kind": "typed", "type": "Claim" } },
-    { "receiver": "internal", "message": { "kind": "typed", "type": "BuyTicket" } },
-    { "receiver": "internal", "message": { "kind": "typed", "type": "ExpeditionResultInternal" } },
-    { "receiver": "internal", "message": { "kind": "typed", "type": "RequestReferralBonus" } },
+const Expedition_receivers: ABIReceiver[] = [
+    { "receiver": "internal", "message": { "kind": "typed", "type": "AddMemberInternal" } },
     { "receiver": "internal", "message": { "kind": "typed", "type": "Deploy" } },
 ]
 
-export class TreasureHunters implements Contract {
+export class Expedition implements Contract {
 
-    static async init(config: Config) {
-        return await TreasureHunters_init(config);
+    static async init(id: bigint, config: Config) {
+        return await Expedition_init(id, config);
     }
 
-    static async fromInit(config: Config) {
-        const init = await TreasureHunters_init(config);
+    static async fromInit(id: bigint, config: Config) {
+        const init = await Expedition_init(id, config);
         const address = contractAddress(0, init);
-        return new TreasureHunters(address, init);
+        return new Expedition(address, init);
     }
 
     static fromAddress(address: Address) {
-        return new TreasureHunters(address);
+        return new Expedition(address);
     }
 
     readonly address: Address;
     readonly init?: { code: Cell, data: Cell };
     readonly abi: ContractABI = {
-        types: TreasureHunters_types,
-        getters: TreasureHunters_getters,
-        receivers: TreasureHunters_receivers,
-        errors: TreasureHunters_errors,
+        types: Expedition_types,
+        getters: Expedition_getters,
+        receivers: Expedition_receivers,
+        errors: Expedition_errors,
     };
 
     private constructor(address: Address, init?: { code: Cell, data: Cell }) {
@@ -1327,26 +1316,11 @@ export class TreasureHunters implements Contract {
         this.init = init;
     }
 
-    async send(provider: ContractProvider, via: Sender, args: { value: bigint, bounce?: boolean | null | undefined }, message: null | Withdraw | Claim | BuyTicket | ExpeditionResultInternal | RequestReferralBonus | Deploy) {
+    async send(provider: ContractProvider, via: Sender, args: { value: bigint, bounce?: boolean | null | undefined }, message: AddMemberInternal | Deploy) {
 
         let body: Cell | null = null;
-        if (message === null) {
-            body = new Cell();
-        }
-        if (message && typeof message === 'object' && !(message instanceof Slice) && message.$$type === 'Withdraw') {
-            body = beginCell().store(storeWithdraw(message)).endCell();
-        }
-        if (message && typeof message === 'object' && !(message instanceof Slice) && message.$$type === 'Claim') {
-            body = beginCell().store(storeClaim(message)).endCell();
-        }
-        if (message && typeof message === 'object' && !(message instanceof Slice) && message.$$type === 'BuyTicket') {
-            body = beginCell().store(storeBuyTicket(message)).endCell();
-        }
-        if (message && typeof message === 'object' && !(message instanceof Slice) && message.$$type === 'ExpeditionResultInternal') {
-            body = beginCell().store(storeExpeditionResultInternal(message)).endCell();
-        }
-        if (message && typeof message === 'object' && !(message instanceof Slice) && message.$$type === 'RequestReferralBonus') {
-            body = beginCell().store(storeRequestReferralBonus(message)).endCell();
+        if (message && typeof message === 'object' && !(message instanceof Slice) && message.$$type === 'AddMemberInternal') {
+            body = beginCell().store(storeAddMemberInternal(message)).endCell();
         }
         if (message && typeof message === 'object' && !(message instanceof Slice) && message.$$type === 'Deploy') {
             body = beginCell().store(storeDeploy(message)).endCell();
@@ -1357,49 +1331,17 @@ export class TreasureHunters implements Contract {
 
     }
 
-    async getExpeditionHistory(provider: ContractProvider) {
+    async getNumberOfMembers(provider: ContractProvider) {
         const builder = new TupleBuilder();
-        const source = (await provider.get('expeditionHistory', builder.build())).stack;
-        const result = Dictionary.loadDirect(Dictionary.Keys.BigInt(257), dictValueParserExpeditionResult(), source.readCellOpt());
-        return result;
-    }
-
-    async getContractBalance(provider: ContractProvider, address: Address) {
-        const builder = new TupleBuilder();
-        builder.writeAddress(address);
-        const source = (await provider.get('contractBalance', builder.build())).stack;
+        const source = (await provider.get('numberOfMembers', builder.build())).stack;
         const result = source.readBigNumber();
         return result;
     }
 
-    async getAvailableForWithdraw(provider: ContractProvider, address: Address) {
+    async getMembers(provider: ContractProvider) {
         const builder = new TupleBuilder();
-        builder.writeAddress(address);
-        const source = (await provider.get('availableForWithdraw', builder.build())).stack;
-        const result = source.readBigNumber();
-        return result;
-    }
-
-    async getCanBeClaimed(provider: ContractProvider, address: Address) {
-        const builder = new TupleBuilder();
-        builder.writeAddress(address);
-        const source = (await provider.get('canBeClaimed', builder.build())).stack;
-        const result = source.readBigNumberOpt();
-        return result;
-    }
-
-    async getReferralBonusBalance(provider: ContractProvider, address: Address) {
-        const builder = new TupleBuilder();
-        builder.writeAddress(address);
-        const source = (await provider.get('referralBonusBalance', builder.build())).stack;
-        const result = source.readBigNumberOpt();
-        return result;
-    }
-
-    async getCurrentExpedition(provider: ContractProvider) {
-        const builder = new TupleBuilder();
-        const source = (await provider.get('currentExpedition', builder.build())).stack;
-        const result = source.readAddressOpt();
+        const source = (await provider.get('members', builder.build())).stack;
+        const result = Dictionary.loadDirect(Dictionary.Keys.BigInt(257), Dictionary.Values.Address(), source.readCellOpt());
         return result;
     }
 
