@@ -13,9 +13,6 @@ const AppContentComponent: React.FC = () => {
         });
     }, [tonConnectUI]);
 
-    if (!tonConnectUI.connected) {
-        tonConnectUI.connectWallet();
-    }
     return (
         <div>
             {wallet ? <ConnectedWalletComponent /> : <WelcomeComponent />}

@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
 
-export function useAsyncInitialize<T>(
-    func: () => Promise<T>,
-    deps: React.DependencyList[] = []
-) {
-    const [state, setState] = useState<T | undefined>();
+export const useAsyncInitialize = <T>(initializer: () => Promise<T | undefined>): T | undefined => {
+    const [value, setValue] = useState<T | undefined>(undefined);
 
     useEffect(() => {
-        (async () => {
-            setState(await func());
-        })();
-    }, deps);
+        let isMounted = true;
 
-    return state;
-}
+        initializer()
+            .then((result) => {
+                if (isMounted) {
+                    setValue(result);
+                }
+            })
+            .catch((error) => {
+                console.error("Error in useAsyncInitialize:", error);
+            });
+
+        return () => {
+            isMounted = false;
+        };
+    }, [initializer]);
+
+    return value;
+};

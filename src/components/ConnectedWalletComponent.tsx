@@ -2,13 +2,14 @@
 import React from 'react';
 import BottomBarComponent from './BottomBarComponent';
 import BuyTicketComponent from './BuyTiketComponent';
+import ExpeditionHistoryComponent from './ExpeditionHistoryComponent';
 
 const ConnectedWalletComponent: React.FC = () => {
 
     return (
         <BottomBarComponent>
             <BuyTicketComponent />
-            <div>Page 2 Content</div>
+            <ExpeditionHistoryComponent />
             <div>Page 3 Content</div>
         </BottomBarComponent>
 
