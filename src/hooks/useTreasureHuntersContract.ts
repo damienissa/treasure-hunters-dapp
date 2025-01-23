@@ -1,8 +1,6 @@
 import { Address, OpenedContract, toNano } from "@ton/core";
-import { TonClient } from "@ton/ton";
 import { CHAIN } from "@tonconnect/ui-react";
-import { useEffect, useState } from "react";
-import { BuyTicket, TreasureHunters } from "../../build/tact_TreasureHunters.ts";
+import { BuyTicket, Claim, ExpeditionResult, TreasureHunters } from "../../build/tact_TreasureHunters.ts";
 import { getExpeditionContract, getTonClient, getTreasureHuntersContract } from "./contracts.ts";
 import { useTonConnect } from "./useTonConnect";
 
@@ -16,79 +14,92 @@ function buyTicketMessage(referrer: Address | null): BuyTicket {
     };
 }
 
+function claimRewardMessage(): Claim {
+    return {
+        $$type: "Claim",
+    };
+}
+
+async function thContract(network: CHAIN | null): Promise<OpenedContract<TreasureHunters> | null> {
+    try {
+        const tonClient = await getTonClient(network === CHAIN.MAINNET ? "mainnet" : "testnet");
+        const contract = await getTreasureHuntersContract(tonClient, TREASURE_HUNTERS_ADDRESS);
+        return contract;
+    } catch (error) {
+        console.error("Failed to initialize TreasureHunters contract:", error);
+        throw error;
+    }
+}
+
 
 export function useTreasureHuntersContract() {
     const { network, sender } = useTonConnect();
-    const [client, setClient] = useState<TonClient | null>(null);
-    const [treasureHuntersContract, setTreasureHuntersContract] = useState<OpenedContract<TreasureHunters> | null>(null);
 
-    useEffect(() => {
-        const initialize = async () => {
-            try {
-                if (!network) return;
-
-                const tonClient = await getTonClient(network === CHAIN.MAINNET ? "mainnet" : "testnet");
-                setClient(tonClient);
-
-                const contract = await getTreasureHuntersContract(tonClient, TREASURE_HUNTERS_ADDRESS);
-                setTreasureHuntersContract(contract);
-            } catch (error) {
-                console.error("Failed to initialize contracts:", error);
-            }
-        };
-
-        initialize();
-    }, [network]);
 
     const getExpedition = async (address: Address) => {
-        if (!client) {
+        const tonClient = await getTonClient(network === CHAIN.MAINNET ? "mainnet" : "testnet");
+        if (!tonClient) {
             console.error("TonClient is not initialized");
             return null;
         }
-        return getExpeditionContract(client, address);
+        return getExpeditionContract(tonClient, address);
+    };
+
+    const getNumberOfCurrentPlayers = async () => {
+        const treasureHuntersContract = await thContract(network);
+        if (!treasureHuntersContract) {
+            console.error("Treasure Hunters contract is not initialized");
+            return 0;
+        }
+
+        try {
+            const currentExpeditionAddress = await treasureHuntersContract.getCurrentExpedition();
+            if (!currentExpeditionAddress) return 0;
+
+            const expedition = await getExpedition(currentExpeditionAddress);
+            return (await expedition?.getNumberOfMembers()) || 0;
+        } catch (error) {
+            console.error("Failed to fetch current players:", error);
+            return 0;
+        }
+    };
+
+    const getExpeditionHistory = async (): Promise<ExpeditionResult[] | null> => {
+        const treasureHuntersContract = await thContract(network);
+        if (!treasureHuntersContract) {
+            console.error("Treasure Hunters contract is not initialized");
+            return null;
+        }
+
+        try {
+            const expeditionHistory = await treasureHuntersContract.getExpeditionHistory();
+            return expeditionHistory.values();;
+        } catch (error) {
+            console.error("Failed to fetch expedition history:", error);
+            return null;
+        }
     };
 
     return {
-        treasureHuntersContract,
-        getExpeditionHistory: async () => {
-            if (!treasureHuntersContract) {
-                console.error("Treasure Hunters contract is not initialized");
-                return null;
-            }
+        getExpeditionHistory,
+        getNumberOfCurrentPlayers,
+        claimRewards: async () => {
 
             try {
-                const expeditionHistory = await treasureHuntersContract.getExpeditionHistory();
-                return expeditionHistory;
-            } catch (error) {
-                console.error("Failed to fetch expedition history:", error);
-                return null;
-            }
-        },
-        getNumberOfCurrentPlayers: async () => {
-            if (!treasureHuntersContract) {
-                console.error("Treasure Hunters contract is not initialized");
-                return 0;
-            }
+                const treasureHuntersContract = await thContract(network);
+                const result = await treasureHuntersContract?.send(sender, { value: toNano("0.05") }, claimRewardMessage());
 
-            try {
-                const currentExpeditionAddress = await treasureHuntersContract.getCurrentExpedition();
-                if (!currentExpeditionAddress) return 0;
-
-                const expedition = await getExpedition(currentExpeditionAddress);
-                return (await expedition?.getNumberOfMembers()) || 0;
+                console.log("Claim Reward result:", result);
+                return result;
             } catch (error) {
-                console.error("Failed to fetch current players:", error);
-                return 0;
+                console.error("Failed to claim reward:", error);
             }
         },
         isInTheExpedition: async () => {
-            if (!treasureHuntersContract || !sender) {
-                console.error("Treasure Hunters contract or sender is not initialized");
-                return false;
-            }
+            const treasureHuntersContract = await thContract(network);
 
             try {
-                const currentExpeditionAddress = await treasureHuntersContract.getCurrentExpedition();
+                const currentExpeditionAddress = await treasureHuntersContract?.getCurrentExpedition();
                 if (!currentExpeditionAddress) return false;
 
                 const expedition = await getExpedition(currentExpeditionAddress);
@@ -100,6 +111,7 @@ export function useTreasureHuntersContract() {
             }
         },
         buyTicket: async (referrer: Address | null) => {
+            const treasureHuntersContract = await thContract(network);
             if (!treasureHuntersContract || !sender) {
                 console.error("Treasure Hunters contract or sender is not initialized");
                 return;
