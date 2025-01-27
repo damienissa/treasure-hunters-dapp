@@ -73,6 +73,12 @@
     box-shadow: 2px 2px 0px #FAFAFA;
 }
 
+/* shared.css */
+.primary-button-disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
 .primary-button {
 
     left: 16px;

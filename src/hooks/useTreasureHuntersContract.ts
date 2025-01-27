@@ -83,6 +83,15 @@ export function useTreasureHuntersContract() {
     return {
         getExpeditionHistory,
         getNumberOfCurrentPlayers,
+        canClaimAmount: async () => {
+            try {
+                const treasureHuntersContract = await thContract(network);
+                const address = sender.address;
+                return await treasureHuntersContract?.getCanBeClaimed(address || Address.parse(""));
+            } catch (error) {
+                console.error("Failed to claim reward:", error);
+            }
+        },
         claimRewards: async () => {
 
             try {

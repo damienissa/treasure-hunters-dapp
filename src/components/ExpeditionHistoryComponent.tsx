@@ -6,11 +6,12 @@ import { useTreasureHuntersContract } from '../hooks/useTreasureHuntersContract'
 import PrimaryButton from './PrimaryButton';
 
 const ExpeditionHistoryComponent: React.FC = () => {
-    const { getExpeditionHistory, claimRewards } = useTreasureHuntersContract();
+    const { getExpeditionHistory, claimRewards, canClaimAmount } = useTreasureHuntersContract();
     const { t } = useTranslation();
     const [history, setHistory] = useState<ExpeditionResult[] | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [canBeClaimed, setCanBeClaimed] = useState<bigint | null>(null);
 
 
     useEffect(() => {
@@ -23,6 +24,19 @@ const ExpeditionHistoryComponent: React.FC = () => {
         }).finally(() => { });
 
     }, [error, loading,]);
+
+
+    useEffect(() => {
+
+        canClaimAmount().then((amount) => {
+            setLoading(false);
+            setCanBeClaimed(amount ?? 0n);
+        }).catch((error) => {
+            setError(error.toString());
+            console.error("Error fetching player count:", error);
+        }).finally(() => { });
+
+    }, [loading, error]);
 
     return (
         <div style={{ padding: "16px" }}>
@@ -37,7 +51,7 @@ const ExpeditionHistoryComponent: React.FC = () => {
                         <ScrollableList expeditions={history} />
 
                         <div style={{ padding: '20px 12px 14px 12px' }}>
-                            <PrimaryButton title={t('claim_rewards')} onClick={claimRewards} />
+                            <PrimaryButton title={t('claim_rewards') + ` ${fromNano(canBeClaimed ?? 0n)}TON`} onClick={claimRewards} disabled={(canBeClaimed ?? 0) == 0} />
                         </div>
                     </div>
                 ) : (
