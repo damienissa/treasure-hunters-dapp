@@ -41,7 +41,7 @@ const BuyTicketComponent: React.FC = () => {
                 <div className="game-text-box-bigger" style={{ paddingBottom: "0px" }}>{t('ticket_price')}</div>
 
                 <div style={{ padding: '20px 12px 14px 12px' }}>
-                    <PrimaryButton title={t('buy_ticket')} onClick={BuyTicket} />
+                    <PrimaryButton title={t('buy_ticket')} disabled={false} onClick={BuyTicket} />
                 </div>
             </div>
         </div>
